@@ -27,7 +27,7 @@ export default function WhyChooseAITC() {
     },
     {
       title: "Balanced Approach",
-      description: "Reducing import dependency through local manufacturing while managing essential high-tech imports.",
+      description: "Local manufacturing with strategic high-tech imports.",
       icon: Users,
     },
     {
@@ -73,11 +73,12 @@ export default function WhyChooseAITC() {
   ]
 
   return (
-    <section className="py-20 bg-mining-white relative overflow-hidden">
-      {/* Parallax Background Elements */}
+    <section className="pt-24 bg-gradient-to-b from-mining-white via-mining-white to-mining-gray/5 relative overflow-hidden">
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <ParallaxElement speed={0.3} className="absolute top-10 left-20">
-          <div className="w-60 h-60 bg-mining-blue/8 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-mining-blue/10 via-transparent to-transparent opacity-40"></div>
+        <ParallaxElement speed={0.3} className="absolute -top-20 -left-20">
+          <div className="w-[40rem] h-[40rem] bg-mining-blue/5 rounded-full blur-3xl animate-pulse"></div>
         </ParallaxElement>
 
         <ParallaxElement speed={0.4} direction="down" className="absolute bottom-10 right-20">
@@ -102,61 +103,44 @@ export default function WhyChooseAITC() {
         {/* Why Choose AITC */}
         <div className="text-center mb-16">
           <AnimatedSection>
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-12 h-1 bg-mining-blue mr-4" />
-              <span className="text-mining-blue font-semibold uppercase tracking-wide">Why Choose AITC?</span>
-              <div className="w-12 h-1 bg-mining-blue ml-4" />
+            <div className="flex items-center justify-center mb-6 group">
+              <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-mining-blue to-transparent mr-6 transform transition-all duration-300 group-hover:scale-x-110" />
+              <span className="text-mining-blue font-semibold uppercase tracking-wider text-sm bg-gradient-to-r from-mining-blue to-mining-blue/80 text-transparent bg-clip-text">Why Choose AITC?</span>
+              <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-mining-blue to-transparent ml-6 transform transition-all duration-300 group-hover:scale-x-110" />
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-mining-gray mb-12">
+            <h2 className="text-5xl md:text-6xl font-bold mb-12 bg-gradient-to-r from-mining-gray to-mining-gray/90 bg-clip-text text-transparent leading-tight">
               Addaan International Trading Company
             </h2>
           </AnimatedSection>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-20">
           {reasons.map((reason, index) => (
             <AnimatedSection key={index} delay={index * 100} animation="fadeInUp">
-              <Card className="text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105 relative overflow-hidden group">
-                {/* Subtle parallax background in card */}
-                <ParallaxElement speed={0.05} className="absolute inset-0 opacity-10">
-                  <div className="w-full h-full bg-gradient-to-br from-mining-blue/20 to-transparent"></div>
-                </ParallaxElement>
+              <Card className="text-center relative overflow-hidden group backdrop-blur-sm border-mining-blue/10 bg-gradient-to-br from-white to-mining-gray/5 h-full">
+                {/* Hover effect background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-mining-blue/10 via-mining-blue/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-mining-blue/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                <CardContent className="p-6 relative z-10">
-                  <div className="flex items-center justify-center mb-4">
-                    <div className="w-6 h-6 bg-mining-blue rounded-full flex items-center justify-center mr-3 transition-transform duration-300 group-hover:scale-110">
-                      <CheckCircle className="h-4 w-4 text-mining-white" />
+                {/* Glowing border effect */}
+                <div className="absolute inset-[1px] bg-gradient-to-r from-mining-blue/20 to-transparent rounded-lg opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500"></div>
+
+                <CardContent className="p-8 relative z-10">
+                  <div className="relative mb-6 h-16 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-r from-mining-blue/20 to-transparent rounded-full blur-lg transform scale-0 group-hover:scale-100 transition-transform duration-500"></div>
+                    <div className="w-16 h-16 bg-gradient-to-br from-mining-blue/10 to-mining-blue/5 rounded-xl flex items-center justify-center transform transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                      <reason.icon className="h-8 w-8 text-mining-blue transition-all duration-300 group-hover:rotate-6" />
                     </div>
-                    <reason.icon className="h-8 w-8 text-mining-blue transition-transform duration-300 group-hover:scale-110" />
                   </div>
-                  <h3 className="text-lg font-bold text-mining-gray mb-3">{reason.title}</h3>
-                  <p className="text-mining-gray/70 text-sm leading-relaxed">{reason.description}</p>
+                  <div className="h-[120px] flex flex-col">
+                    <h3 className="text-xl font-bold text-mining-gray mb-3 transition-all duration-300 group-hover:text-mining-blue">{reason.title}</h3>
+                    <p className="text-mining-gray/70 leading-relaxed transition-all duration-300 group-hover:text-mining-gray/90 text-sm">{reason.description}</p>
+                  </div>
                 </CardContent>
               </Card>
             </AnimatedSection>
           ))}
-        </div>
-
-        {/* Our Trusted Partners */}
-        <div className="mb-16">
-          <AnimatedSection>
-            <h3 className="text-3xl font-bold text-mining-gray mb-8 text-center">Our Trusted Partners</h3>
-            <p className="text-lg text-mining-gray/70 text-center mb-8">
-              AITC collaborates with world-class brands to deliver cutting-edge solutions:
-            </p>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {partners.map((partner, index) => (
-              <AnimatedSection key={index} delay={index * 200} animation="fadeInUp">
-                <div className="text-center transform transition-all duration-300 hover:scale-105">
-                  <h4 className="text-xl font-bold text-mining-blue mb-2">{partner.name}</h4>
-                  <p className="text-mining-gray/70">{partner.description}</p>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
         </div>
       </div>
     </section>

@@ -3,35 +3,13 @@ import { CheckCircle, Award, Factory, Globe } from "lucide-react"
 import Link from "next/link"
 import AnimatedSection from "./animated-section"
 import ParallaxElement from "./parallax-element"
+import Image from "next/image"
 
 export default function CoreTraysHighlight() {
   const highlights = ["Saudi Made Product", "Locally Manufactured in the Kingdom", "Align with the Vision 2030"]
 
   return (
     <section id="core-trays" className="py-20 bg-gradient-to-br from-mining-white to-mining-gray/10 relative overflow-hidden">
-      {/* Parallax Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <ParallaxElement speed={0.3} className="absolute top-20 left-10">
-          <div className="w-72 h-72 bg-mining-blue/10 rounded-full blur-3xl"></div>
-        </ParallaxElement>
-
-        <ParallaxElement speed={0.5} direction="down" className="absolute bottom-20 right-10">
-          <div className="w-96 h-96 bg-mining-blue/15 rounded-full blur-3xl"></div>
-        </ParallaxElement>
-
-        <ParallaxElement speed={0.4} direction="right" className="absolute top-1/2 left-1/4">
-          <div className="w-48 h-48 bg-gradient-to-r from-mining-blue/20 to-transparent rounded-full blur-2xl"></div>
-        </ParallaxElement>
-
-        {/* Geometric parallax shapes */}
-        <ParallaxElement speed={0.6} className="absolute top-40 right-1/4">
-          <div className="w-32 h-32 border-2 border-mining-blue/30 rotate-45 rounded-lg"></div>
-        </ParallaxElement>
-
-        <ParallaxElement speed={0.2} direction="left" className="absolute bottom-40 left-1/3">
-          <div className="w-24 h-24 bg-mining-blue/20 rotate-12 rounded-lg"></div>
-        </ParallaxElement>
-      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -112,25 +90,13 @@ export default function CoreTraysHighlight() {
           {/* Visual with Parallax */}
           <AnimatedSection animation="fadeInRight" delay={400}>
             <div className="relative">
-              {/* Parallax floating elements around the card */}
-              <ParallaxElement speed={0.3} className="absolute -top-8 -right-8">
-                <div className="w-16 h-16 bg-mining-blue/20 rounded-full blur-xl"></div>
-              </ParallaxElement>
-
-              <ParallaxElement speed={0.5} direction="down" className="absolute -bottom-8 -left-8">
-                <div className="w-12 h-12 bg-mining-blue/30 rounded-full blur-lg"></div>
-              </ParallaxElement>
-
               <div className="bg-gradient-to-br from-mining-blue to-mining-blue/80 rounded-2xl p-8 text-center text-mining-white transform transition-all duration-500 hover:scale-105 shadow-2xl relative overflow-hidden">
-                {/* Parallax background pattern inside card */}
-                <ParallaxElement speed={0.1} className="absolute inset-0 opacity-10">
-                  <div className="w-full h-full bg-gradient-to-br from-mining-white/20 to-transparent"></div>
-                </ParallaxElement>
-
-                <img
+                <Image
+                  width={200}
+                  height={200}
                   src="/images/aitc-logo.png"
                   alt="AITC Logo"
-                  className="h-16 mx-auto mb-4 transition-transform duration-300 hover:scale-110 relative z-10"
+                  className="mx-auto mb-4 rounded-md transition-transform duration-300 hover:scale-110 relative z-10"
                 />
                 <h3 className="text-2xl font-bold mb-2 relative z-10">A PRODUCT OF ADDAAN</h3>
                 <h3 className="text-2xl font-bold mb-4 relative z-10">INTERNATIONAL TRADING</h3>
@@ -152,14 +118,6 @@ export default function CoreTraysHighlight() {
                   ))}
                 </div>
               </div>
-
-              {/* Parallax decorative elements */}
-              <ParallaxElement speed={0.4} className="absolute -top-4 -right-4">
-                <div className="w-8 h-8 bg-mining-blue rounded-full animate-pulse"></div>
-              </ParallaxElement>
-              <ParallaxElement speed={0.6} direction="left" className="absolute -bottom-4 -left-4">
-                <div className="w-6 h-6 bg-mining-blue/80 rounded-full animate-bounce"></div>
-              </ParallaxElement>
             </div>
           </AnimatedSection>
         </div>

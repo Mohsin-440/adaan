@@ -7,7 +7,7 @@ import Products from "@/components/products"
 import Team from "@/components/team"
 import Achievements from "@/components/achievements"
 import Partners from "@/components/partners"
-import Contact from "@/components/contact"
+import ContactSection from "@/components/sections/contact-section"
 import Footer from "@/components/footer"
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
       <Team />
       <Achievements />
       <Partners />
-      <Contact />
+      <ContactSection />
       <Footer />
     </main>
   )

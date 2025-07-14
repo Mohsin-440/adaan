@@ -1,7 +1,21 @@
-import { Card, CardContent } from "@/components/ui/card"
+"use client"
 import { Award, TrendingUp, Users, Factory, Globe } from "lucide-react"
+import { motion, useScroll, useSpring, useInView } from "framer-motion"
+import { useRef } from "react"
 
 export default function Achievements() {
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end end"]
+  })
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  })
+
   const milestones = [
     {
       year: "2015",
@@ -9,7 +23,8 @@ export default function Achievements() {
       description:
         "Addaan International Trading Company (AITC) was founded, embarking on a mission to revolutionize the mining sector with innovative solutions.",
       icon: Factory,
-      color: "bg-mining-blue",
+      color: "#219AD3",
+      align: "left",
     },
     {
       year: "2016",
@@ -17,7 +32,8 @@ export default function Achievements() {
       description:
         "Initiated market research to identify gaps in the mining industry, aligning efforts with Saudi Vision 2030 to drive growth and sustainability.",
       icon: TrendingUp,
-      color: "bg-mining-blue/80",
+      color: "#515250",
+      align: "right",
     },
     {
       year: "2017",
@@ -25,7 +41,8 @@ export default function Achievements() {
       description:
         "Secured partnerships with leading drilling brands and charted a clear roadmap to become a comprehensive provider of mining technology solutions.",
       icon: Users,
-      color: "bg-mining-blue/60",
+      color: "#219AD3",
+      align: "left",
     },
     {
       year: "2018",
@@ -33,7 +50,8 @@ export default function Achievements() {
       description:
         "Formed a strategic alliance with IMDEX, delivering cutting-edge logging and data solutions for the mining and exploration industries.",
       icon: Globe,
-      color: "bg-mining-blue/70",
+      color: "#515250",
+      align: "right",
     },
     {
       year: "2019",
@@ -41,7 +59,8 @@ export default function Achievements() {
       description:
         "Successfully navigated the challenges of the pandemic, maintaining robust business operations and delivering exceptional client support.",
       icon: Award,
-      color: "bg-mining-blue/90",
+      color: "#219AD3",
+      align: "left",
     },
     {
       year: "2020",
@@ -49,7 +68,8 @@ export default function Achievements() {
       description:
         "Pioneered the first Saudi-made core boxes, reducing reliance on imports and championing local manufacturing in line with Vision 2030.",
       icon: Factory,
-      color: "bg-mining-blue",
+      color: "#515250",
+      align: "right",
     },
     {
       year: "2021",
@@ -57,7 +77,8 @@ export default function Achievements() {
       description:
         "Expanded significantly, deploying over 18 DESCO rigs across Saudi Arabia, reinforcing AITC's position as a market leader.",
       icon: TrendingUp,
-      color: "bg-mining-blue/80",
+      color: "#219AD3",
+      align: "left",
     },
     {
       year: "2022",
@@ -65,7 +86,8 @@ export default function Achievements() {
       description:
         "Achieved sales of more than 200,000 core trays nationwide, while focusing on product enhancements and raw material development.",
       icon: Award,
-      color: "bg-mining-blue/70",
+      color: "#515250",
+      align: "right",
     },
     {
       year: "2023",
@@ -73,7 +95,8 @@ export default function Achievements() {
       description:
         "Celebrated the company's most successful year, setting new records in growth, client satisfaction, and industry impact.",
       icon: TrendingUp,
-      color: "bg-mining-blue/90",
+      color: "#219AD3",
+      align: "left",
     },
     {
       year: "2024",
@@ -81,7 +104,8 @@ export default function Achievements() {
       description:
         "Surpassed 250,000 core boxes sold. Established Saudi Arabia's first IMDEX repair centre, enhancing service efficiency and strengthening client relationships.",
       icon: Award,
-      color: "bg-mining-blue",
+      color: "#515250",
+      align: "right",
     },
     {
       year: "2025",
@@ -89,74 +113,142 @@ export default function Achievements() {
       description:
         "Continuing a legacy of innovation and excellence with anticipated achievements in technology and market expansion.",
       icon: Globe,
-      color: "bg-mining-blue/80",
+      color: "#219AD3",
+      align: "left",
     },
   ]
 
   return (
-    <section id="achievements" className="py-20 bg-mining-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-4">
-            <div className="w-12 h-1 bg-mining-blue mr-4" />
-            <span className="text-mining-blue font-semibold uppercase tracking-wide">Our Journey</span>
-            <div className="w-12 h-1 bg-mining-blue ml-4" />
+    <section id="achievements" className="py-24 bg-gradient-to-b from-white to-mining-gray/5 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.4 }}
+          transition={{ duration: 1 }}
+          className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-mining-blue/5 via-transparent to-transparent"
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <div className="flex items-center justify-center mb-6 group">
+            <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-mining-blue to-transparent mr-6 transform transition-all duration-300 group-hover:scale-x-110" />
+            <span className="text-mining-blue font-semibold uppercase tracking-wider text-sm bg-gradient-to-r from-mining-blue to-mining-blue/80 text-transparent bg-clip-text">Our Journey</span>
+            <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-mining-blue to-transparent ml-6 transform transition-all duration-300 group-hover:scale-x-110" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-mining-gray to-mining-gray/90 bg-clip-text text-transparent mb-4">
+            Our Achievements
+          </h2>
+          <p className="text-xl text-mining-gray/70">
+            A decade of innovation and excellence in the mining industry
+          </p>
+        </motion.div>
+
+        <div className="relative" ref={containerRef}>
+          {/* Vertical timeline line */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 transform md:-translate-x-1/2">
+            {/* Main line */}
+            <motion.div
+              className="relative w-1 h-full origin-top"
+              style={{ scaleY }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-mining-blue/50 to-transparent"></div>
+              <div className="absolute inset-0 bg-mining-blue/20 blur-sm"></div>
+              <div className="absolute inset-0 bg-mining-blue/30 animate-pulse blur-md"></div>
+            </motion.div>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-mining-gray mb-6">AITC Milestone Timeline</h2>
+          <div className="relative flex flex-col space-y-12 md:space-y-32">
+            {milestones.map((milestone, index) => {
+              const cardRef = useRef(null)
+              const isInView = useInView(cardRef, { once: true, margin: "-100px" })
+              const isLeftCard = index % 2 === 0
 
-          <p className="text-lg text-mining-gray/70 max-w-3xl mx-auto">
-            A decade of innovation, growth, and excellence in the mining industry, supporting Saudi Vision 2030 and
-            driving technological advancement.
-          </p>
-        </div>
+              return (
+                <div key={index} className="relative">
+                  <div className={`flex justify-start md:justify-between items-center w-full ${isLeftCard ? 'md:flex-row' : 'md:flex-row-reverse'
+                    }`}>
+                    <motion.div
+                      ref={cardRef}
+                      initial={{
+                        opacity: 0,
+                        x: 50
+                      }}
+                      animate={isInView ? {
+                        opacity: 1,
+                        x: 0
+                      } : {}}
+                      transition={{
+                        duration: 0.8,
+                        ease: "easeOut",
+                        delay: 0.2
+                      }}
+                      className="w-[85%] md:w-[45%] ml-8 md:ml-0 relative group"
+                    >
+                      {/* Glow effect */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute -inset-1 bg-gradient-to-r from-mining-blue/20 to-transparent rounded-xl blur"
+                      />
 
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-mining-blue/20 hidden md:block" />
-
-          <div className="space-y-8">
-            {milestones.map((milestone, index) => (
-              <div key={index} className="relative flex items-start">
-                {/* Timeline Dot */}
-                <div className="hidden md:flex absolute left-6 w-4 h-4 bg-mining-blue rounded-full border-4 border-mining-white shadow-lg z-10" />
-
-                {/* Content Card */}
-                <Card className="w-full md:ml-16 hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div
-                        className={`w-12 h-12 ${milestone.color} rounded-lg flex items-center justify-center flex-shrink-0`}
+                      <motion.div
+                        whileHover={{ y: -4, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="relative bg-gradient-to-br from-white to-mining-gray/5 p-6 md:p-8 rounded-xl shadow-lg backdrop-blur-sm border border-mining-blue/10"
                       >
-                        <milestone.icon className="h-6 w-6 text-mining-white" />
-                      </div>
+                        {/* Connection line */}
+                        <motion.div
+                          initial={{ scaleX: 0 }}
+                          animate={isInView ? { scaleX: 1 } : {}}
+                          transition={{ duration: 0.4, delay: 0.3 }}
+                          className={`absolute top-1/2 h-0.5 transform -translate-y-1/2
+                            ${isLeftCard
+                              ? 'right-0 w-8 md:w-16 bg-gradient-to-r from-transparent to-mining-blue'
+                              : 'left-0 w-8 md:w-16 bg-gradient-to-l from-transparent to-mining-blue'
+                            }`}
+                        />
 
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-3 mb-2">
-                          <span className="text-2xl font-bold text-mining-blue">{milestone.year}</span>
-                          <h3 className="text-xl font-bold text-mining-gray">{milestone.title}</h3>
-                        </div>
-                        <p className="text-mining-gray/70 leading-relaxed">{milestone.description}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
+                        {/* Content */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={isInView ? { opacity: 1, y: 0 } : {}}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                          className="flex items-center justify-between mb-4"
+                        >
+                          <div className="flex items-center space-x-3">
+                            <milestone.icon className="h-6 w-6 text-mining-blue" />
+                            <h3 className="text-2xl font-semibold bg-gradient-to-r from-mining-gray to-mining-gray/90 bg-clip-text text-transparent">
+                              {milestone.title}
+                            </h3>
+                          </div>
+                          <span className="text-2xl font-bold text-mining-blue">
+                            {milestone.year}
+                          </span>
+                        </motion.div>
+                        <motion.p
+                          initial={{ opacity: 0 }}
+                          animate={isInView ? { opacity: 1 } : {}}
+                          transition={{ duration: 0.6, delay: 0.4 }}
+                          className="text-mining-gray/70 leading-relaxed"
+                        >
+                          {milestone.description}
+                        </motion.p>
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
-        </div>
-
-        {/* Driving Force Section */}
-        <div className="mt-16 bg-gradient-to-r from-mining-gray to-mining-gray/80 rounded-2xl p-8 text-center text-mining-white">
-          <h3 className="text-3xl font-bold mb-4 text-mining-blue">Our Driving Force</h3>
-          <p className="text-lg mb-4">
-            AITC's journey is powered by the dedication of its talented team and the visionary support of its
-            management, fostering a culture of relentless progress and excellence.
-          </p>
-          <p className="text-mining-blue/80">
-            This timeline highlights AITC's unwavering commitment to innovation, client satisfaction, and contributions
-            to Saudi Vision 2030.
-          </p>
         </div>
       </div>
     </section>
